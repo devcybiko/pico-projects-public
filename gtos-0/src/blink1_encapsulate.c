@@ -1,0 +1,38 @@
+
+#include "pico/stdlib.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+typedef struct Led {
+    uint pin;
+    int state;
+    int delay;
+} Led;
+
+Led *led_new(uint pin, int delay) {
+    Led *new_led = calloc(1, sizeof(Led));
+    new_led->pin = pin;
+    new_led->state = 0;
+    new_led->delay = delay;
+    return new_led;
+}
+
+void led_init(Led *led) {
+    gpio_init(led->pin);
+    gpio_set_dir(led->pin, GPIO_OUT);
+}
+
+void led_blink(Led *led) {
+    sleep_ms(led->delay);
+    gpio_put(led->pin, led->state);
+    led->state = !led->state;
+}
+
+int main()
+{
+    Led *board_led = led_new(PICO_DEFAULT_LED_PIN, 250);
+    while (true) {
+        led_blink(board_led);
+    }
+}
