@@ -1,0 +1,3 @@
+/home/projects/gtos-0c/build/pioasm/CMakeFiles/pioasm.dir
+/home/projects/gtos-0c/build/pioasm/CMakeFiles/edit_cache.dir
+/home/projects/gtos-0c/build/pioasm/CMakeFiles/rebuild_cache.dir
